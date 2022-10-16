@@ -12,13 +12,17 @@ apt-get install burpsuite
 Сохраняем наш трафик 
 ![wireshark](/images/2.jpg)
 и идём писать правила:
+
 `alert http any any -> any any (msg:"Win32/SessionManager Request Cookie SM_SESSIONID"; flow:established,to_server; content:"SM_SESSIONID="; depth:13; http_cookie; sid:10003; rev:1;)`
+
 Сохраняем файл как cookie.rules и начинаем тестировать:
 
 `suricata -vvv -r $path_to_pcap -S $path_to_rule -k none | grep Alerts`
+
 После запуска в текущей директории появятся файлы:
 - fast.log
 - stats.log
 - suricata.log
+
 Нас интересует fast.log (туда попадут алерты со сработок)
 ![output](/images/3.png)
