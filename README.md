@@ -10,7 +10,7 @@ apt-get install burpsuite
 формируем пакет и отправляем на компьютер жертвы.
 ![burp](/images/1.png)
 Сохраняем наш трафик 
-![wireshark](/images/2.png)
+![wireshark](/images/2.jpg)
 и идём писать правила:
 `alert http any any -> any any (msg:"Win32/SessionManager Request Cookie SM_SESSIONID"; flow:established,to_server; content:"SM_SESSIONID="; depth:13; http_cookie; sid:10003; rev:1;)`
 Сохраняем файл как cookie.rules и начинаем тестировать:
